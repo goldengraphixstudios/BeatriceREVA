@@ -986,96 +986,6 @@ footer{
 }
 #rp-toggle:hover{background:var(--black-3);color:var(--gold-2)}
 
-/* ─── CHATBOT ─────────────────────────────────────────── */
-#chat-btn{
-  position:fixed;right:32px;bottom:32px;
-  width:56px;height:56px;border-radius:50%;
-  background:var(--gold);border:none;
-  z-index:3000;
-  display:flex;align-items:center;justify-content:center;
-  box-shadow:0 8px 32px rgba(201,168,76,.35);
-  transition:transform .25s,box-shadow .25s;
-}
-#chat-btn:hover{transform:scale(1.08);box-shadow:0 12px 40px rgba(201,168,76,.5)}
-#chat-btn svg{width:22px;height:22px;stroke:var(--black);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
-#chat-win{
-  position:fixed;right:32px;bottom:104px;
-  width:350px;
-  background:var(--black-2);
-  border:1px solid var(--gold-20);
-  z-index:3000;
-  display:none;flex-direction:column;
-  box-shadow:0 24px 80px rgba(0,0,0,.7);
-  transform:translateY(10px) scale(.98);
-  transition:transform .3s var(--ease-out),opacity .3s;
-  opacity:0;
-}
-#chat-win.open{display:flex;transform:translateY(0) scale(1);opacity:1}
-.ch-head{
-  padding:18px 20px;
-  background:var(--black-3);
-  border-bottom:1px solid var(--gold-10);
-  display:flex;align-items:center;justify-content:space-between;
-}
-.ch-info{display:flex;align-items:center;gap:12px}
-.ch-av{
-  width:34px;height:34px;border-radius:50%;
-  background:var(--gold);
-  display:flex;align-items:center;justify-content:center;
-  flex-shrink:0;
-}
-.ch-av svg{width:16px;height:16px;stroke:var(--black);fill:none;stroke-width:2;stroke-linecap:round}
-.ch-name{font-size:13px;font-weight:600;color:var(--cream)}
-.ch-status{font-size:10px;color:var(--gold);letter-spacing:.06em}
-.ch-x{background:none;border:none;color:var(--cream-60);font-size:20px;font-weight:300;transition:color .2s}
-.ch-x:hover{color:var(--gold)}
-.ch-msgs{
-  flex:1;overflow-y:auto;padding:20px;
-  display:flex;flex-direction:column;gap:14px;
-  max-height:300px;
-}
-.ch-msgs::-webkit-scrollbar{width:3px}
-.ch-msgs::-webkit-scrollbar-thumb{background:var(--gold-dim)}
-.cm{max-width:86%;font-size:13px;line-height:1.6;padding:12px 16px;font-weight:300}
-.cm-b{
-  background:var(--black-3);border-left:1px solid var(--gold);
-  color:var(--cream-60);align-self:flex-start;
-}
-.cm-u{
-  background:var(--gold-10);border:1px solid var(--gold-20);
-  color:var(--cream);align-self:flex-end;
-}
-.ch-chips{
-  padding:0 16px 12px;
-  display:flex;flex-wrap:wrap;gap:8px;
-}
-.ch-chip{
-  font-size:10px;font-weight:500;letter-spacing:.06em;
-  background:transparent;border:1px solid var(--gold-20);color:var(--gold);
-  padding:6px 14px;
-  transition:background .2s;
-}
-.ch-chip:hover{background:var(--gold-10)}
-.ch-inp-row{
-  padding:12px 16px;border-top:1px solid var(--gold-10);
-  display:flex;gap:10px;
-}
-.ch-inp{
-  flex:1;background:var(--black-3);border:1px solid var(--gold-10);
-  color:var(--cream);padding:10px 14px;
-  font-family:'Outfit',sans-serif;font-size:13px;outline:none;
-  transition:border-color .25s;
-}
-.ch-inp:focus{border-color:var(--gold-40)}
-.ch-send{
-  background:var(--gold);border:none;color:var(--black);
-  width:38px;
-  display:flex;align-items:center;justify-content:center;
-  transition:background .2s;
-}
-.ch-send:hover{background:var(--gold-2)}
-.ch-send svg{width:14px;height:14px;stroke:var(--black);fill:none;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round}
-
 /* ─── SCROLL PROGRESS ─────────────────────────────────── */
 #scroll-prog{
   position:fixed;top:0;left:0;height:2px;
@@ -1894,40 +1804,6 @@ footer{
 </aside>
 <button id="rp-toggle" onclick="toggleRP()" aria-label="Open Resume">View Resume</button>
 
-<!-- CHATBOT -->
-<button id="chat-btn" onclick="toggleChat()" aria-label="Open chat assistant">
-  <svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
-</button>
-<div id="chat-win" role="dialog" aria-label="Bea's Assistant">
-  <div class="ch-head">
-    <div class="ch-info">
-      <div class="ch-av">
-        <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
-      </div>
-      <div>
-        <div class="ch-name">Bea's Assistant</div>
-        <div class="ch-status">● Online — Ask me anything</div>
-      </div>
-    </div>
-    <button class="ch-x" onclick="toggleChat()" aria-label="Close chat">&#10005;</button>
-  </div>
-  <div class="ch-msgs" id="ch-msgs">
-    <div class="cm cm-b">Hi! I'm Beatrice's virtual assistant. I can answer questions about her services, experience, tools, and availability. How can I help?</div>
-  </div>
-  <div class="ch-chips" id="ch-chips">
-    <button class="ch-chip" onclick="suggest('What services does Beatrice offer?')">Services</button>
-    <button class="ch-chip" onclick="suggest('What is her experience?')">Experience</button>
-    <button class="ch-chip" onclick="suggest('What tools does she use?')">Tools</button>
-    <button class="ch-chip" onclick="suggest('How do I hire her?')">Hire Her</button>
-  </div>
-  <div class="ch-inp-row">
-    <input class="ch-inp" id="ch-inp" type="text" placeholder="Ask a question..." onkeydown="if(event.key==='Enter')sendMsg()">
-    <button class="ch-send" onclick="sendMsg()" aria-label="Send">
-      <svg viewBox="0 0 24 24"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
-    </button>
-  </div>
-</div>
-
 <script>
 /* ── CURSOR ─────────────────────────────────────── */
 const dot=document.getElementById('cur-dot');
@@ -2032,7 +1908,6 @@ setGallery(0);
 document.addEventListener('keydown',e=>{
   const tag=e.target.tagName;
   if(tag==='INPUT'||tag==='TEXTAREA')return;
-  if(e.key==='Escape')closeChat();
   if(e.key==='ArrowLeft')setGallery(galleryIndex-1);
   if(e.key==='ArrowRight')setGallery(galleryIndex+1);
 });
@@ -2042,58 +1917,6 @@ function toggleRP(){
   document.getElementById('resume-panel').classList.toggle('open');
   document.getElementById('rp-overlay').classList.toggle('open');
   document.body.style.overflow=document.getElementById('resume-panel').classList.contains('open')?'hidden':'';
-}
-
-/* ── CHATBOT ────────────────────────────────────── */
-const R={
-  default:"For specific details about availability or pricing, reach out to Beatrice directly at bea.mayenne@gmail.com or WhatsApp +63 927 056 2035.",
-  services:"Beatrice offers: Transaction Coordination (contract-to-close) · Administrative Support (email, calendar, CRM) · MLS Navigation & Real Estate Systems · Marketing Asset Creation (Canva, CapCut) · Compliance & Documentation Management. Which area would you like to know more about?",
-  experience:"Beatrice has 5+ years of experience across operations, QA, and coordination roles at Cognizant and Concentrix. She's currently an Incident Manager at Cognizant and completed formal REVA Masterclass training in U.S. Property Management & Real Estate Transactions (Oct–Nov 2025).",
-  tools:"She's proficient in: Google Workspace, Microsoft 365, Canva, CapCut, Slack, Trello, Discord, CRM platforms, and ChatGPT. Also familiar with Dotloop, DocuSign, ZipForm, Dropbox, and MLS systems.",
-  hire:"To hire Beatrice: fill out the contact form on this page · Email: bea.mayenne@gmail.com · WhatsApp/Viber: +63 927 056 2035. She responds within 24 hours.",
-  pricing:"Beatrice offers flexible arrangements — retainer-based VA support, per-transaction coordination pricing, and custom packages. Contact her directly to discuss what fits your volume and budget.",
-  location:"Based in Tarlac City, Philippines. She provides remote support for U.S.-based realtors, brokerages, investors, and property managers.",
-  mls:"Yes — trained in MLS navigation and listing input through the REVA Masterclass. She can handle listing data input, property research, COMPS analysis, and CMA basics.",
-  contact:"Email: bea.mayenne@gmail.com · Phone/WhatsApp/Viber: +63 927 056 2035 · Or use the contact form on this page.",
-};
-function getReply(input){
-  const l=input.toLowerCase();
-  if(/service|offer|what (do|can)|help/i.test(l))return R.services;
-  if(/experience|background|history|worked|career|role/i.test(l))return R.experience;
-  if(/tool|platform|software|canva|dotloop|docusign|slack|trello|crm/i.test(l))return R.tools;
-  if(/hire|work|start|book|available|onboard/i.test(l))return R.hire;
-  if(/price|cost|rate|fee|charge|pay/i.test(l))return R.pricing;
-  if(/location|where|country|timezone|philippine|manila|tarlac/i.test(l))return R.location;
-  if(/mls|listing|navigation/i.test(l))return R.mls;
-  if(/contact|email|phone|whatsapp|viber|reach/i.test(l))return R.contact;
-  return R.default;
-}
-let chatOpen=false;
-function toggleChat(){
-  chatOpen=!chatOpen;
-  document.getElementById('chat-win').classList.toggle('open',chatOpen);
-}
-function closeChat(){
-  chatOpen=false;
-  document.getElementById('chat-win').classList.remove('open');
-}
-function addMsg(text,type){
-  const msgs=document.getElementById('ch-msgs');
-  const d=document.createElement('div');
-  d.className='cm cm-'+type;d.textContent=text;
-  msgs.appendChild(d);msgs.scrollTop=msgs.scrollHeight;
-}
-function suggest(text){
-  document.getElementById('ch-chips').style.display='none';
-  addMsg(text,'u');
-  setTimeout(()=>addMsg(getReply(text),'b'),500);
-}
-function sendMsg(){
-  const inp=document.getElementById('ch-inp');
-  const v=inp.value.trim();if(!v)return;
-  document.getElementById('ch-chips').style.display='none';
-  addMsg(v,'u');inp.value='';
-  setTimeout(()=>addMsg(getReply(v),'b'),500);
 }
 
 /* ── FORM ───────────────────────────────────────── */
